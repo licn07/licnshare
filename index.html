@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiCN - Share</title>
+    <style>
+        /* 1. 自定义字体 - 路径改为网站根目录 */
+        @font-face {
+            font-family: "LiCNGlobalFont";
+            /* 根目录路径直接写文件名，去掉 ./fonts/ 前缀 */
+            src: url("LiCNFont.woff2") format("woff2"),
+                 url("LiCNFont.woff") format("woff"),
+                 url("LiCNFont.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+            unicode-range: U+0020-007E, U+4E00-9FFF;
+        }
+
+        /* 软拟物方块背景 替换为 背景.jpg */
+        body {
+            background: url("./背景.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #212529;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 保留背景装饰层的浮动动画，叠加在背景图上增强层次 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='120' height='120' rx='20' fill='%23FFA566' opacity='0.7' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3Crect x='200' y='150' width='140' height='140' rx='20' fill='%234CC3FF' opacity='0.8' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3Crect x='100' y='250' width='100' height='100' rx='20' fill='%2386E8CB' opacity='0.7' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3Crect x='250' y='50' width='100' height='100' rx='20' fill='%23FF6666' opacity='0.7' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3Crect x='50' y='300' width='120' height='80' rx='20' fill='%23B388FF' opacity='0.6' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3C/svg%3E");
+            background-size: 800px 800px;
+            background-repeat: repeat;
+            opacity: 0.2;
+            animation: float 30s ease-in-out infinite;
+        }
+
+        /* 通用浮动动画 */
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(1deg); }
+            50% { transform: translate(-10px, 30px) rotate(-1deg); }
+            75% { transform: translate(30px, 10px) rotate(1deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+           的，只需修改 `@font-face` 规则里的字体文件路径，把原相对路径改成根目录路径即可。
+
+### 修改后完整代码
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiCN - Share</title>
+    <style>
+        /* 1. 自定义字体 - 路径改为网站根目录 */
+        @font-face {
+            font-family: "LiCNGlobalFont";
+            /* 根目录路径直接写文件名，去掉 ./fonts/ 前缀 */
+            src: url("LiCNFont.woff2") format("woff2"),
+                 url("LiCNFont.woff") format("woff"),
+                 url("LiCNFont.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+            unicode-range: U+0020-007E, U+4E00-9FFF;
+        }
+
+        /* 软拟物方块背景 替换为 背景.jpg */
+        body {
+            background: url("./背景.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #212529;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 保留背景装饰层的浮动动画，叠加在背景图上增强层次 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='120' height='120' rx='20' fill='%23FFA566' opacity='0.7' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3Crect x='200' y='150' width='140' height='140' rx='20' fill='%234CC3FF' opacity='0.8' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3Crect x='100' y='250' width='100' height='100' rx='20' fill='%2386E8CB' opacity='0.7' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3Crect x='250' y='50' width='100' height='100' rx='20' fill='%23FF6666' opacity='0.7' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3Crect x='50' y='300' width='120' height='80' rx='20' fill='%23B388FF' opacity='0.6' filter='drop-shadow(0 10px 8px rgba(0,0,0,0.1))'/%3E%3C/svg%3E");
+            background-size: 800px 800px;
+            background-repeat: repeat;
+            opacity: 0.2;
+            animation: float 30s ease-in-out infinite;
+        }
+
+        /* 通用浮动动画 */
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(1deg); }
+            50% { transform: translate(-10px, 30px) rotate(-1deg); }
+            75% { transform: translate(30px, 10px) rotate(1deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "LiCNGlobalFont" !important;
+            font-weight: normal !important;
+            font-style: normal !important;
+        }
+
+        /* 图标字体修复 */
+        .fas, .far {
+            font-family: "Font Awesome 6 Free" !important;
+            font-weight: 900 !important;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 焦点区 */
+        .hero {
+            padding: 6rem 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: url('logo.jpg') no-repeat center center / cover;
+            border-radius: 0 0 50px 50px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 0 0 50px 50px;
+            z-index: 0;
+        }
+
+        .hero h1 {
+            position: relative;
+            z-index: 1;
+            font-size: 1.8rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* 分类卡片 - 极致透明 + 文字图标描边 */
+        .categories {
+            padding: 3rem 2%;
+            flex: 1;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 0.8rem;
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            /* 标题添加描边 */
+            text-shadow: 0 0 2px #fff, 0 0 4px #fff;
+        }
+
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 1.2rem;
+            background-color: #3A86FF;
+        }
+
+        /* 核心：极致透明 + 描边提升辨识度 */
+        .category-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            /* 极致透明：不透明度降至0.08，几乎完全透出背景 */
+            background-color: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.005);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            width: 100%;
+            /* 细白边框增强轮廓 */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .category-card:hover {
+            transform: translateY(-2px);
+            /* 悬浮时轻微提升透明度，保留反馈 */
+            background-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.02);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .category-card:hover i {
+            color: #FF2D55;
+            text-shadow: 0 0 2px #fff, 0 0 4px #fff;
+        }
+
+        .category-card:active {
+            transform: scale(0.99);
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .category-card i {
+            font-size: 1.8rem;
+            color: #3A86FF;
+            margin-right: 2rem;
+            width: 30px;
+            text-align: center;
+            transition: color 0.2s ease;
+            /* 图标描边：白色外描边，增强辨识度 */
+            text-shadow: 0 0 2px #fff, 0 0 4px #fff;
+        }
+
+        .category-card h3 {
+            font-size: 1.1rem;
+            flex: 1;
+            text-align: left;
+            /* 文字描边：白色外描边，保证高透背景下清晰可见 */
+            text-shadow: 0 0 2px #fff, 0 0 4px #fff;
+        }
+
+        /* 悬浮窗样式 - 同步通透化 */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-content {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: popIn 0.2s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.2rem;
+            color: #6C757D;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: #FF2D55;
+        }
+
+        .popup-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #3A86FF;
+            opacity: 0.9;
+        }
+
+        .popup-content p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #212529;
+            opacity: 0.9;
+        }
+
+        /* 底部版权与免责声明 - 清晰化 + 融合背景 */
+        .footer {
+            background-color: transparent;
+            border: none;
+            padding: 2rem 5%;
+            text-align: center;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+            /* 核心：添加轻微背景模糊，提升文字可读性 */
+            backdrop-filter: blur(4px);
+        }
+
+        .footer .copyright {
+            color: #555555;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            /* 增强文字描边，提高清晰度 */
+            text-shadow: 0 0 2px #fff, 0 0 3px #fff, 0 0 5px #fff;
+            /* 提高不透明度，让文字更醒目 */
+            opacity: 1;
+        }
+
+        .footer .disclaimer {
+            color: #FF3333;
+            font-size: 0.9rem;
+            font-weight: 600;
+            /* 增强文字描边，提高清晰度 */
+            text-shadow: 0 0 2px #fff, 0 0 3px #fff, 0 0 5px #fff;
+            /* 提高不透明度，让文字更醒目 */
+            opacity: 1;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .category-card {
+                padding: 1.8rem 2rem;
+            }
+            .category-card i {
+                font-size: 1.5rem;
+                margin-right: 1.5rem;
+            }
+            .category-card h3 {
+                font-size: 1rem;
+            }
+            .footer .copyright,
+            .footer .disclaimer {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <section class="hero">
+        <h1>LiCN · Share</h1>
+    </section>
+
+    <section class="categories">
+        <h2 class="section-title">资源分类</h2>
+        <div class="category-grid">
+            <div class="category-card" onclick="openPopup('toolPopup')">
+                <i class="fas fa-laptop-code"></i>
+                <h3>软件工具</h3>
+            </div>
+            <div class="category-card" onclick="openPopup('filmPopup')">
+                <i class="fas fa-film"></i>
+                <h3>影视资源</h3>
+            </div>
+            <div class="category-card" onclick="openPopup('studyPopup')">
+                <i class="fas fa-book-open"></i>
+                <h3>学习资料</h3>
+            </div>
+            <div class="category-card" onclick="openPopup('androidPopup')">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>安卓模块</h3>
+            </div>
+            <div class="category-card" onclick="openPopup('codePopup')">
+                <i class="fas fa-code"></i>
+                <h3>脚本代码</h3>
+            </div>
+            <div class="category-card" onclick="openPopup('morePopup')">
+                <i class="fas fa-ellipsis-h"></i>
+                <h3>更多分类</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部版权与免责声明 -->
+    <footer class="footer">
+        <div class="copyright">© 2025 LiCN资源站. 保留所有权利。</div>
+        <div class="disclaimer">你的一切行为与本站无关，请勿做违法行为！</div>
+    </footer>
+
+    <!-- 悬浮窗 -->
+    <div class="popup" id="toolPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('toolPopup')">&times;</span>
+            <h4>软件工具资源</h4>
+            <p>精选实用软件、工具安装包，无捆绑纯净版。</p>
+            <p>支持一键下载，附详细使用教程。</p>
+        </div>
+    </div>
+
+    <div class="popup" id="filmPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('filmPopup')">&times;</span>
+            <h4>影视资源专区</h4>
+            <p>高清电影、电视剧、动漫资源合集，更新及时。</p>
+            <p>提供多种分辨率选择，极速下载。</p>
+        </div>
+    </div>
+
+    <div class="popup" id="studyPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('studyPopup')">&times;</span>
+            <h4>学习资料合集</h4>
+            <p>编程、设计、考研等各类学习资料，免费分享。</p>
+            <p>包含视频教程、电子书、真题题库。</p>
+        </div>
+    </div>
+
+    <div class="popup" id="androidPopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('androidPopup')">&times;</span>
+            <h4>安卓模块专区</h4>
+            <p>LSPosed/Xposed 模块、自定义脚本，功能强大。</p>
+            <p>附模块安装与配置教程，新手友好。</p>
+        </div>
+    </div>
+
+    <div class="popup" id="codePopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('codePopup')">&times;</span>
+            <h4>脚本代码资源</h4>
+            <p>实用Shell脚本、自动化脚本，可直接运行。</p>
+            <p>代码开源，支持二次修改。</p>
+        </div>
+    </div>
+
+    <div class="popup" id="morePopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('morePopup')">&times;</span>
+            <h4>更多分类</h4>
+            <p>持续更新更多资源分类，敬请期待！</p>
+            <p>你可以留言反馈想要的资源类型。</p>
+        </div>
+    </div>
+
+    <script>
+        function openPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        window.onclick = function(event) {
+            const popups = document.querySelectorAll(".popup");
+            popups.forEach(popup => {
+                if (event.target === popup) {
+                    popup.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
